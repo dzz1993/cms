@@ -9,7 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\Route;
-return [
+/*return [
     '__pattern__' => [
         'name' => '\w+',
     ],
@@ -18,5 +18,5 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
 
-];
+];*/
 Route::get('banner/:id','api/v1.Banner/getBanner');

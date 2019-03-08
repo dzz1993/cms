@@ -7,6 +7,7 @@
  */
 
 namespace app\api\controller\v1;
+use app\api\controller\IDMustBePositiveInt;
 
 class Banner
 {
@@ -16,6 +17,16 @@ class Banner
      * @http GET
      * */
     public function getBanner($id){
-        return 'hello'.$id;
+        $data = [
+            'id'=> $id
+        ];
+        $validate = new IDMustBePositiveInt();
+        $result=$validate->check($data);
+        if($result){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
 }
