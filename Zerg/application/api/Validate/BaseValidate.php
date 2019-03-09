@@ -6,7 +6,7 @@
  * Time: 01:17
  */
 
-namespace app\api\controller;
+namespace app\api\validate;
 
 
 use think\Exception;
@@ -25,7 +25,7 @@ class BaseValidate extends Validate
         }
         else{
             $error = $this->error;
-            throw new Exception($error);
+            //throw new Exception($error);
         }
     }
 }

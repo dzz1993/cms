@@ -7,7 +7,10 @@
  */
 
 namespace app\api\controller\v1;
-use app\api\controller\IDMustBePositiveInt;
+use app\api\validate\IDMustBePositiveInt;
+//引用model中的Banner类,由于有重名问题，最好use一个别名
+use app\api\model\Banner as BannerModel;
+use think\Exception;
 
 class Banner
 {
@@ -17,16 +20,17 @@ class Banner
      * @http GET
      * */
     public function getBanner($id){
-        $data = [
-            'id'=> $id
-        ];
-        $validate = new IDMustBePositiveInt();
-        $result=$validate->check($data);
-        if($result){
-            return 1;
+        (new IDMustBePositiveInt())->goCheck();
+        //异常的抛出机制是，往上级抛，所有需要在这一步也捕获异常调用这个函数产生的异常，但没必要再往上抛了，直接返回定义的错误信息就行了
+        try{
+            $banner = BannerModel::getBannerByID($id);
         }
-        else{
-            return 0;
+        catch(Exception $ex){
+            //当然了，在api中，不允许直接传数组，如果是数组，则需要json一下
+            return "error";
         }
+
+        return $banner;
+
     }
 }
