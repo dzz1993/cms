@@ -9,11 +9,11 @@
 namespace app\lib\exception;
 
 
-use think\exception\Handle;
+use think\Exception;
 
-class BaseException extends Handle
+class BaseException extends Exception
 {
-    //定义状态码code，具体的错误信息，自定义的错误码，并附上初始值,具体的exception会覆盖
+    //定义http状态码code，具体的错误信息，自定义的错误码，并附上初始值,也可以不用,具体的exception会覆盖
     public $code = 400;
     public $msg = "参数错误";
     public $errorCode = '10000';
