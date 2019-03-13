@@ -11,11 +11,12 @@ namespace app\api\validate;
 class IDMustBePositiveInt extends BaseValidate
 {
     protected $rule = [
-        'id'=>'required|isPositiveInt'
+        'id'=>'require|isPositiveInt'
     ];
     /*自定义校验函数的四个参数：
     field->data是参数名->具体传入参数
     data是数组，rule先不管
+    返回值 正确为true，错误为error原因，这快要写清楚，便于异常处理
      * */
     protected function isPositiveInt($value,$rule="",$data="",$field="")
     {

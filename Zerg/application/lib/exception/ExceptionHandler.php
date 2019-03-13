@@ -37,14 +37,17 @@ class ExceptionHandler extends Handle
 
         }
         else{
-            //加一个开关，如果是给客户端，就
-
-
-            //不需要让用户知道具体错误
-            $this->code = 500;
-            $this->msg = "服务器内部错误";
-            $this->errorCode = 999;
-            $this->recordErrorLog($e);
+            //加一个开关，如果是给客户端，就返回自定义，如果是后台就返回系统的，也就是Handle中的
+            if(config("app_debug")){
+                return parent::render($e);
+            }
+            else{
+                //不需要让用户知道具体错误
+                $this->code = 500;
+                $this->msg = "服务器内部错误";
+                $this->errorCode = 999;
+                $this->recordErrorLog($e);
+            }
         }
         //获取当前请求的url,这种东西就应该想到tp自带的request类,它的下面有个url方法
         $request = Request::instance();

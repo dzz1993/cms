@@ -7,11 +7,14 @@
  */
 
 namespace app\api\model;
+use think\Db;
+use think\Model;
 
-class Banner
+class Banner extends Model
 {
-    public static function getBannerByID($id){
-        //TODO:根据id号返回banner信息
-        return null;
-    }
+//在model中再也不需要定义基本的增删改查方法了
+    //    public static function getBannerByID($id){
+//        //$result = Db::query('select * from banner_item where banner_id=?',[$id]);
+//        //return json_encode($result);
+//    }
 }
